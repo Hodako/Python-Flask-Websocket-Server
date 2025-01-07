@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask-SocketIO WebSocket Example</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var socket = io();
+
+            socket.on('connect', function() {
+                console.log('Connected to WebSocket server');
+            });
+
+            socket.on('message', function(msg) {
+                console.log('Message from server: ' + msg);
+            });
+
+            socket.on('custom_response', function(data) {
+                console.log('Custom response from server: ' + data.response);
+            });
+
+            function sendMessage() {
+                var message = document.getElementById('messageInput').value;
+                socket.send(message);
+            }
+
+            function sendCustomEvent() {
+                var eventData = {data: 'Some custom data'};
+                socket.emit('custom_event', eventData);
+            }
+
+            document.getElementById('sendBtn').addEventListener('click', sendMessage);
+            document.getElementById('customEventBtn').addEventListener('click', sendCustomEvent);
+        });
+    </script>
+</head>
+<body>
+    <h1>Flask-SocketIO WebSocket Example</h1>
+    <input type="text" id="messageInput" placeholder="Enter a message">
+    <button id="sendBtn">Send Message</button>
+    <button id="customEventBtn">Send Custom Event</button>
+</body>
+</html>
