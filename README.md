@@ -2,10 +2,6 @@
 You can run this on onrender.com and heroku 
 
 
-Sure! Below is a sample `README.md` file for your Flask WebSocket application.
-
-### `README.md`
-
 ```markdown
 # Flask WebSocket Example
 
